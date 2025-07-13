@@ -48,7 +48,7 @@ AutoGen Studioは、あくまで**急速なプロトタイピングやデモン�
 - **プロトタイプである点:** 本ツールは本番環境での利用を想定していません。実際の運用では、認証やセキュリティ、データアクセスの管理など、必要な機能を個々に実装する必要があります。  
 - **セキュリティ対策:** Dockerを利用した分離環境など基本的な対策は講じられていますが、ジャイルブレイク対策や権限管理の厳格なテストは行われていません。本番運用を考える場合は、AutoGenフレームワークを使用し、自前でセキュリティ機能を追加してください。
 
-## AutoGen Studio PoC 
+# AutoGen Studio PoC 
 
 ```bash
 python -m venv .venv
@@ -63,3 +63,68 @@ pip install -U autogenstudio
 autogenstudio ui --host 127.0.0.1 --port 8081 --workers 1
 ```
 ブラウザで `http://127.0.0.1:8081` にアクセスします。
+
+## 新しいチームを作りましょう
+Customer-Aware Redesign Experts
+お客様の声から改善案をディスカッションする
+
+ViewerからチームのEditアイコンをクリックし、チーム名と説明を追記します。
+![alt text](image-1.png)
+![alt text](image.png)
+
+Azure OpenAIを使うので、Agentのモデルに Azure OpenAI GPT-4o-miniをドラッグ＆ドロップします。
+![alt text](image-2.png)
+
+モデルのAPIキーやエンドポイントを設定します。
+エージェントのEditアイコンをクリックします。
+Configured Modelをクリックし、エンドポイントやAPIキー、デプロイ名を入力します。
+![alt text](image-3.png)
+
+![alt text](image-4.png)
+
+「Test」ボタンから、接続できているか確認できます。
+![alt text](image-5.png)
+
+#### エージェント
+ユーザからのフィードバックを収集するエージェント
+WebSerferAgentをチームにドラッグアンドドロップします。
+- SearchUserFeedbackAgent
+- ユーザからのフィードバック情報を検索し収集するエージェント
+- ツールを利用し、ユーザからのフィードバック情報を検索し収集してください。
+
+![alt text](image-10.png)
+
+もちろん、利用するモデルの設定も行います。
+![alt text](image-11.png)
+
+![alt text](image-12.png)
+
+エンジンの専門家
+- ExpertEngineAgent
+- 自動車エンジンの専門家として、改善案や背反などの注意点を回答します。
+- 自動車エンジンの専門家として、改善案や背反などの注意点を回答してください。
+![alt text](image-8.png)
+
+モーターの専門家
+- ExpertMotorAgent
+- 自動車のモーターの専門家として、改善案や背反などの注意点を回答します。
+- 自動車のモーターの専門家として、改善案や背反などの注意点を回答してください。
+![alt text](image-9.png)
+
+燃費の専門家
+- ExpertFuelEconomyAgent
+- 自動車の燃費の専門家として、改善案や背反などの注意点を回答します。
+- 自動車の燃費の専門家として、改善案や背反などの注意点を回答してください。
+![alt text](image-19.png)
+
+マネージャー
+- ManagerAgent
+- 自動車の一車種のマネージャーです。各専門家の意見に対して指摘を行い、次の議論の方向性を示してください。
+![alt text](image-18.png)
+
+## 実行
+ホンダの車種「S660」のユーザからの不満の声を集め、それらを解決する方法を具体的に議論し、改善案として提出してください。
+
+このように会話フローが表示されます。
+
+![alt text](image-13.png)
